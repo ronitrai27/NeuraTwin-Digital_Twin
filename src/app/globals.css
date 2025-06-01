@@ -9,7 +9,6 @@
   --font-roboto: "Roboto", sans-serif;
   --font-orbitron: "Orbitron", sans-serif;
   --font-quicksand: "Quicksand", sans-serif;
-
 }
 
 @theme inline {
@@ -50,34 +49,35 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --animate-shiny-text: shiny-text 8s infinite;
   @keyframes shiny-text {
-  0%, 90%, 100% {
-    background-position: calc(-100% - var(--shiny-width)) 0;}
-  30%, 60% {
-    background-position: calc(100% + var(--shiny-width)) 0;}}
+    0%,
+    90%,
+    100% {
+      background-position: calc(-100% - var(--shiny-width)) 0;
+    }
+    30%,
+    60% {
+      background-position: calc(100% + var(--shiny-width)) 0;
+    }
+  }
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   @keyframes marquee {
-  from {
-    transform: translateX(0);
-
+    from {
+      transform: translateX(0);
     }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
-
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
     }
-
   }
   @keyframes marquee-vertical {
-  from {
-    transform: translateY(0);
-
+    from {
+      transform: translateY(0);
     }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
-
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
     }
-
-  }}
+  }
+}
 
 :root {
   --radius: 0.625rem;
@@ -111,7 +111,8 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);}
+  --foreground: oklch(0.145 0 0);
+}
 
 .dark {
   --background: oklch(0.145 0 0);
@@ -144,10 +145,14 @@
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);}
+  --sidebar-ring: oklch(0.556 0 0);
+}
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;}
+    @apply border-border outline-ring/50;
+  }
   body {
-    @apply bg-background text-foreground;}}
+    @apply bg-background text-foreground;
+  }
+}

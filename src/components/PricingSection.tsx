@@ -63,7 +63,7 @@ const PricingSection: React.FC = () => {
             Plans That Grow With You
           </h2>
           <p className="bg-gradient-to-b from-white via-gray-300 to-indigo-500/30 text-transparent bg-clip-text font-sora max-w-2xl mx-auto tracking-tight leading-snug text-xl">
-            Whether you're starting your journey or leading your life with
+            Whether you&apos;re starting your journey or leading your life with
             precision, NeuraTwin evolves with you — unlocking deeper personal
             insights, guidance, and smart self-growth.
           </p>

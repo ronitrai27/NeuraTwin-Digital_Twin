@@ -1,5 +1,5 @@
 import React from "react";
-import Spline from "@splinetool/react-spline";
+// import Spline from "@splinetool/react-spline";
 import { Globe } from "@/components/magicui/globe";
 import { AnimatedBeamDemo } from "./Beam";
 import Image from "next/image";
