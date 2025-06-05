@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <section className="w-full overflow-hidden relative min-[768px]:px-8 px-4 py-2 ">
       {/* Background Spline */}
-      <div className="w-[580px] h-[580px] min-[768px]:w-[32rem] min-[768px]:h-[32rem] min-[1024px]:w-[40rem] min-[1024px]:h-[40rem]  absolute -top-10 left-1/2 -translate-x-1/2 z-0 ">
+      <div className=" max-[600px]:hidden w-[580px] h-[580px] min-[768px]:w-[32rem] min-[768px]:h-[32rem] min-[1024px]:w-[40rem] min-[1024px]:h-[40rem]  absolute -top-10 left-1/2 -translate-x-1/2 z-0 ">
         <Spline scene="https://prod.spline.design/Wm3OGmA3c7maZLkC/scene.splinecode" />
       </div>
 
