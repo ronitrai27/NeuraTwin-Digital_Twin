@@ -1,7 +1,43 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Orb from "../../components/ui/Orb";
-import { LuArrowUpRight } from "react-icons/lu";
+import { Loader, ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { emailSchema } from "@/schemas/LoginSchema";
+import { EmailSchemaType } from "@/types/LoginSchemaType";
+import toast from "react-hot-toast";
+// import axios from "axios";
+import api from "../../lib/api";
+import OtpForm from "@/components/OtpForm";
 const page = () => {
+  const [otpPage, setOtpPage] = useState<boolean>(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<EmailSchemaType>({
+    resolver: zodResolver(emailSchema),
+  });
+  const onSubmit = async (data: EmailSchemaType) => {
+    try {
+      const res = await api.post("/api/auth/login", { email: data.email });
+      if (res.data.success) {
+        toast.success("OTP sent to your mail!");
+        setOtpPage(true);
+      } else {
+        toast.error("Something went wrong!");
+      }
+    } catch (err: any) {
+      toast.error(err.response?.data?.error || "Failed to send OTP");
+    }
+  };
+
+  const handleVerifyOtp = async (otp: string) => {
+    toast.loading("Verifying OTP...");
+  };
+
   return (
     <section className="bg-gradient-to-b from-black to-indigo-950 w-full h-screen overflow-hidden relative py-3">
       <div className="w-full h-[350px] relative z-0">
@@ -12,42 +48,69 @@ const page = () => {
           forceHoverState={false}
         />
       </div>
-      <h2
-        className={`font-sora font-semibold tracking-tight text-white text-[38px] absolute top-40 left-1/2 -translate-x-1/2  z-50`}
-      >
-        <span className="bg-gradient-to-b from-white via-gray-400 to-indigo-600 text-transparent bg-clip-text [-webkit-background-clip:text]">
-          Neura
-        </span>
-        Twin
-      </h2>
-      <div className="mt-6 min-[600px]:px-8 px-4">
-        <h3 className=" font-orbitron min-[1000px]:text-4xl min-[600px]:text-3xl text-2xl text-balance font-medium text-white tracking-tight text-center">
-          Unlock Your Full Potential
-        </h3>
-        <p className="bg-gradient-to-b from-white via-gray-400 to-indigo-900/30 text-transparent bg-clip-text min-[800px]:text-2xl text-xl font-medium tracking-tight text-balance mt-5 text-center">
-          Enter your email and we will send you Magic code! Remember to do not
-          share code with anyone.
-        </p>
-        <form className="w-full max-w-md mx-auto mt-20">
-          <div>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Enter Email..."
-              required
-              className="w-full px-4 py-3 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
-            />
-          </div>
+      <Link href="/" passHref>
+        <h2
+          className={`font-sora font-semibold tracking-tight text-white text-[38px] absolute top-40 left-1/2 -translate-x-1/2 z-50 cursor-pointer`}
+        >
+          <span className="bg-gradient-to-b from-white via-gray-400 to-indigo-600 text-transparent bg-clip-text [-webkit-background-clip:text]">
+            Neura
+          </span>
+          Twin
+        </h2>
+      </Link>
+      {/* EMAIL FORM \\ OTP FORM */}
 
-          <button
-            type="submit"
-            className="w-full mt-10 px-4 py-2 font-sora font-bold bg-gradient-to-l from-indigo-200 to-indigo-600 rounded-full flex items-center justify-center gap-3 hover:scale-105 transition-all duration-200 cursor-pointer"
+      {!otpPage ? (
+        <div className="mt-6 min-[600px]:px-8 px-4 max-w-4xl mx-auto">
+          <h3 className=" font-orbitron min-[1000px]:text-4xl min-[600px]:text-3xl text-2xl text-balance font-medium text-white tracking-tight text-center">
+            Unlock Your Full Potential
+          </h3>
+          <p className="bg-gradient-to-b from-white via-gray-400 to-indigo-900/30 text-transparent bg-clip-text min-[800px]:text-2xl text-xl font-medium tracking-tight text-balance mt-5 text-center font-sora">
+            Enter your email and we will send you Magic code! Remember to do not
+            share code with anyone.
+          </p>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="w-full max-w-md mx-auto mt-20"
           >
-            Get Code <LuArrowUpRight size={22} className="text-white" />
-          </button>
-        </form>
-      </div>
+            <div>
+              <input
+                type="email"
+                placeholder="Enter Email..."
+                {...register("email")}
+                className="w-full px-4 py-3 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full mt-10 px-4 py-2 font-sora font-bold bg-gradient-to-l from-indigo-400 to-indigo-600 rounded-xl flex items-center justify-center gap-3 hover:scale-105 transition-all duration-200 cursor-pointer text-white disabled:opacity-70 disabled:cursor-not-allowed"
+            >
+              {isSubmitting ? (
+                <>
+                  Sending
+                  <Loader size={20} className="animate-spin text-white" />
+                </>
+              ) : (
+                <>
+                  Get The Code
+                  <ArrowUpRight size={22} className="text-white" />
+                </>
+              )}
+            </button>
+
+            {errors.email && (
+              <p className="text-[15px] text-gray-400 mt-2 font-inter font-light animate-bounce transition-all duration-1000 text-center">
+                {errors.email.message}
+              </p>
+            )}
+          </form>
+        </div>
+      ) : (
+        // OTP FORM
+        <OtpForm onVerify={handleVerifyOtp} />
+      )}
     </section>
   );
 };

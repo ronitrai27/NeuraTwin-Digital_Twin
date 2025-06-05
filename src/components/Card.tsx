@@ -4,19 +4,19 @@ import { LuBookCheck, LuBot, LuBoxes } from "react-icons/lu";
 import { BackgroundGradient } from "../components/ui/background-gradient";
 const features = [
   {
-    icon: <LuBookCheck size={30} className="text-indigo-400" />,
+    icon: <LuBookCheck size={36} className="text-indigo-400" />,
     title: "Daily Journal",
     description:
       "Track your short and long-term goals with daily insights and progress updates.Build productive routines based.",
   },
   {
-    icon: <LuBot size={30} className="text-indigo-400" />,
+    icon: <LuBot size={36} className="text-indigo-400" />,
     title: "AI-Powered Insights",
     description:
       "Your twin learns and grows with you, providing smart emotional guidance.Build productive routines based.",
   },
   {
-    icon: <LuBoxes size={30} className="text-indigo-400" />,
+    icon: <LuBoxes size={36} className="text-indigo-400" />,
     title: "Goal Tracking",
     description:
       "Build productive routines based on your unique personality and goals.emotional guidance.Build productive routines.",
@@ -44,7 +44,7 @@ const Card = () => {
               <h2 className="min-[1000px]:text-xl min-[600px]:text-[26px] text-xl font-semibold font-sora mb-5 text-white text-center">
                 {feature.title}
               </h2>
-              <p className="min-[1000px]:text-[16px] min-[600px]:text-[20px] text-[16px] font-quicksand text-gray-300 text-center mt-3 leading-relaxed text-balance ">
+              <p className="min-[1000px]:text-[16px] min-[600px]:text-[20px] text-[16px] font-inter text-gray-300 text-center mt-3 leading-relaxed text-balance ">
                 {feature.description}
               </p>
             </BackgroundGradient>

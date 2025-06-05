@@ -1,5 +1,4 @@
 import React from "react";
-// import Spline from "@splinetool/react-spline";
 import { Globe } from "@/components/magicui/globe";
 import { AnimatedBeamDemo } from "./Beam";
 import Image from "next/image";
@@ -30,7 +29,7 @@ const Feature = () => {
                     globe
                   </span>
                 </h3>
-                <p className=" font-quicksand text-center text-balance md:mt-10 md:text-2xl  bg-gradient-to-b from-white via-gray-400 to-indigo-800/20 text-transparent bg-clip-text">
+                <p className=" font-inter text-center text-balance md:mt-10 md:text-2xl  bg-gradient-to-b from-white via-gray-400 to-indigo-800/20 text-transparent bg-clip-text">
                   Become unstopable with NeuraTwin, and beat your previous
                   version. Millions of people already started using.
                 </p>
@@ -46,10 +45,13 @@ const Feature = () => {
               {/* <div className="absolute bottom-0 left-0 w-full h-[7rem] bg-gradient-to-t from-black to-transparent backdrop-blur-sm z-40" /> */}
 
               {/* Top content above overlay */}
-              <div className="relative z-20">
-                <h2 className="absolute top-16 left-1/2 -translate-x-1/2 text-white font-sora text-2xl text-center">
+              <div className="relative z-20 ">
+                <h2 className="absolute top-0 left-1/2 -translate-x-1/2 text-white font-sora text-2xl text-center">
                   More Than just GPT
                 </h2>
+                <p className="font-quicksand text-lg tracking-tight max-[580px]:hidden absolute top-16 left-1/2 -translate-x-1/2  text-balance ">
+                  Beyond the capabilities of your normal Chatbot
+                </p>
                 <AnimatedBeamDemo />
               </div>
             </div>
@@ -67,7 +69,7 @@ const Feature = () => {
                 <h2 className="font-orbitron text-white text-3xl font-medium tracking-tight">
                   Enter New Era of AI
                 </h2>
-                <p className=" font-sora text-center text-balance text-xl mt-5 bg-gradient-to-b from-white via-gray-400 to-indigo-800/20 text-transparent bg-clip-text">
+                <p className=" font-inter text-center text-balance text-xl mt-5 bg-gradient-to-b from-white via-gray-400 to-indigo-800/20 text-transparent bg-clip-text">
                   Journaling , insights , behaviour pattern , mood and Goal
                   tracking and much more all in One Place.
                 </p>

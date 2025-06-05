@@ -56,7 +56,7 @@ const PricingSection: React.FC = () => {
   ];
 
   return (
-    <section className="pricing-section relative w-full min-h-screen px-6 md:px-8 py-8 flex flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black ">
+    <section className="pricing-section relative w-full min-h-screen px-6 md:px-8 py-12 flex flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black ">
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-20">
           <h2 className="font-orbitron font-medium tracking-tight text-4xl text-white mb-5">

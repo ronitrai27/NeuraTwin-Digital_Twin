@@ -25,11 +25,11 @@ const Hero = () => {
 
         <div className="flex flex-col w-full items-center justify-center mt-20 gap-5">
           <Link href="/login">
-            <button className=" flex items-center gap-2 text-black font-sora font-medium bg-gradient-to-r from-indigo-300 to-indigo-500 px-4 py-2 rounded-xl">
+            <button className=" flex items-center gap-2 text-black font-inter font-medium bg-gradient-to-r from-indigo-300 to-indigo-500 px-4 py-2 rounded-xl cursor-pointer hover:scale-105 transition-transform duration-300">
               Try Now <LuArrowUpRight className="text-white" size={22} />
             </button>
           </Link>
-          <p className=" underline underline-offset-4 text-gray-400">
+          <p className="font-orbitron underline underline-offset-4 text-gray-400">
             Terms & Conditions Applied
           </p>
         </div>

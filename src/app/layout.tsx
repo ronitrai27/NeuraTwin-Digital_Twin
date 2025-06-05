@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Sora, Roboto, Orbitron, Quicksand } from "next/font/google";
+import { Sora, Inter, Orbitron, Outfit } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -8,10 +9,10 @@ const sora = Sora({
   weight: ["400", "600", "700"],
 });
 
-const roboto = Roboto({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-roboto",
-  weight: ["400", "700"],
+  variable: "--font-inter",
+  weight: ["400", "600", "700"],
 });
 
 const orbitron = Orbitron({
@@ -20,9 +21,9 @@ const orbitron = Orbitron({
   weight: ["400", "600", "700"],
 });
 
-const quicksand = Quicksand({
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-quicksand",
+  variable: "--font-outfit",
   weight: ["400", "600", "700"],
 });
 
@@ -41,11 +42,25 @@ export default function RootLayout({
       <body
         className={`
           ${sora.variable}
-          ${roboto.variable} 
+          ${inter.variable} 
           ${orbitron.variable} 
-          ${quicksand.variable}  antialiased`}
+          ${outfit.variable} 
+          antialiased`}
       >
         {children}
+
+        <Toaster
+          position="bottom-right"
+          toastOptions={{
+            duration: 3000,
+            style: {
+              background: "#333",
+              color: "#fff",
+              borderRadius: "8px",
+              padding: "12px 16px",
+            },
+          }}
+        />
       </body>
     </html>
   );

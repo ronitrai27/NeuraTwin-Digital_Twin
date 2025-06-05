@@ -34,7 +34,7 @@ const Navbar = () => {
     >
       <div className="flex items-center justify-between">
         {/* LINKS */}
-        <nav className="hidden min-[820px]:inline-flex gap-6 items-center font-roboto text-[16px] tracking-tight font-medium text-gray-400">
+        <nav className="hidden min-[820px]:inline-flex gap-6 items-center font-inter text-[16px] tracking-tight font-medium text-gray-400">
           <Link href="/reachus" className="hover:text-deep">
             Reach us
           </Link>
@@ -64,17 +64,17 @@ const Navbar = () => {
 
         {/* CTA + Mobile Menu Button */}
         <div className="flex items-center">
-          <a href="#">
+          <Link href="/login">
             <button
-              className={` min-[820px]:px-5 px-3 py-2 transition-all duration-300 bg-gradient-to-r from-indigo-200  to-indigo-500 rounded-xl ${
+              className={` min-[820px]:px-5 px-3 py-2 transition-all duration-300 bg-gradient-to-r from-indigo-200  to-indigo-500 rounded-xl cursor-pointer ${
                 isSticky ? "scale-90" : "scale-100"
               }`}
             >
-              <span className="whitespace-pre-wrap text-center font-roboto text-[16px] text-gray-800 font-medium">
+              <span className="whitespace-pre-wrap text-center font-inter text-[16px] text-gray-800 font-medium">
                 Log in
               </span>
             </button>
-          </a>
+          </Link>
 
           {/* <button
             onClick={() => setIsMenuOpen(true)}
