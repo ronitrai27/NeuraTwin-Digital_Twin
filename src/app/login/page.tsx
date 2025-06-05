@@ -8,10 +8,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { emailSchema } from "@/schemas/LoginSchema";
 import { EmailSchemaType } from "@/types/LoginSchemaType";
 import toast from "react-hot-toast";
-// import axios from "axios";
+import Cookies from "js-cookie";
 import api from "../../lib/api";
 import OtpForm from "@/components/OtpForm";
+import { useRouter } from "next/navigation";
+
 const page = () => {
+  const router = useRouter();
   const [otpPage, setOtpPage] = useState<boolean>(false);
   const {
     register,
@@ -33,9 +36,28 @@ const page = () => {
       toast.error(err.response?.data?.error || "Failed to send OTP");
     }
   };
-
+  const email = Cookies.get("temp_email");
   const handleVerifyOtp = async (otp: string) => {
-    toast.loading("Verifying OTP...");
+    try {
+      const res = await api.post("/api/auth/verify-otp", {
+        email, // saved from email Cookie
+        otp,
+      });
+
+      if (res.data.success) {
+        toast.success("OTP Verified!");
+
+        if (res.data.newUser) {
+          router.push("/profile-update");
+        } else {
+          router.push("/");
+        }
+      } else {
+        toast.error("Invalid or expired OTP");
+      }
+    } catch (err: any) {
+      toast.error(err.response?.data?.error || "Verification failed");
+    }
   };
 
   return (

@@ -56,12 +56,8 @@ const OtpForm = ({ onVerify }: { onVerify: (otp: string) => void }) => {
   return (
     <div className="mt-10">
       <h3 className="text-center text-white text-2xl font-orbitron">
-        Enter the 6-digit Code
+        Enter the 6-digitMagic Code
       </h3>
-      <p className="text-center text-sm text-gray-300 mt-2 font-sora">
-        Check your email for the OTP we sent.
-      </p>
-
       <div className="flex justify-center space-x-3 mt-8">
         {otp.map((digit, index) => (
           <input
@@ -69,7 +65,6 @@ const OtpForm = ({ onVerify }: { onVerify: (otp: string) => void }) => {
             ref={(el) => {
               inputsRef.current[index] = el;
             }}
-            // ref={(el) => (inputsRef.current[index] = el)}
             type="text"
             inputMode="numeric"
             maxLength={1}
@@ -87,6 +82,12 @@ const OtpForm = ({ onVerify }: { onVerify: (otp: string) => void }) => {
       >
         Verify Code
       </button>
+      <p className="text-center text-sm text-gray-300 mt-3 font-sora text-balance">
+        Check your email for the OTP we sent. If you want to resend the code{" "}
+        <span className="font-inter text-indigo-400 font-light underline underline-offset-4">
+          CLick Here
+        </span>
+      </p>
     </div>
   );
 };
