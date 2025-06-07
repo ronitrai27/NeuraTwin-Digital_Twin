@@ -7,19 +7,19 @@ const features = [
     icon: <LuBookCheck size={36} className="text-indigo-400" />,
     title: "Daily Journal",
     description:
-      "Track your short and long-term goals with daily insights and progress updates.Build productive routines based.",
+      "Reflect daily. NeuraTwin turns your thoughts into insights that shape habits, track emotions, and guide growth.",
   },
   {
     icon: <LuBot size={36} className="text-indigo-400" />,
     title: "AI-Powered Insights",
     description:
-      "Your twin learns and grows with you, providing smart emotional guidance.Build productive routines based.",
+      "Your AI twin evolves with you, offering tailored advice, emotional clarity, and smart mental check-ins.",
   },
   {
     icon: <LuBoxes size={36} className="text-indigo-400" />,
     title: "Goal Tracking",
     description:
-      "Build productive routines based on your unique personality and goals.emotional guidance.Build productive routines.",
+      "Set meaningful goals, build routines, and stay motivated — all aligned with your personality and pace.",
   },
 ];
 
@@ -27,10 +27,10 @@ const Card = () => {
   return (
     <section className="my-14 px-8 py-6">
       <main>
-        <h3 className="font-sora text-3xl bg-gradient-to-b from-white via-gray-400 to-indigo-800/20 text-transparent bg-clip-text tracking-tight font-medium min-[768px]:text-left text-center">
+        <h3 className="font-sora text-3xl bg-gradient-to-b from-white via-gray-400 to-indigo-800/20 text-transparent bg-clip-text tracking-tight font-medium text-center">
           Align With Your Goals
         </h3>
-        <h1 className="font-orbitron text-5xl tracking-tight text-white mt-2 min-[768px]:text-left text-center">
+        <h1 className="font-orbitron text-5xl tracking-tight text-white mt-2 text-center">
           Reimagined Yourself
         </h1>
 

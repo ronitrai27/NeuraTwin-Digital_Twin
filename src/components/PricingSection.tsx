@@ -37,9 +37,9 @@ const PricingSection: React.FC = () => {
       isRecommended: true,
     },
     {
-      tier: "Elite Twin",
-      price: "$19",
-      audience: "Professionals & visionaries",
+      tier: "Custom Twin",
+      price: "Flexible",
+      audience: "for Professionals & Teams",
       features: [
         { name: "Real-Time AI Life Coach & Guidance" },
         { name: "Deep Life Insight & Trend Forecasting" },
@@ -49,7 +49,7 @@ const PricingSection: React.FC = () => {
         { name: "Priority Access to AI Twin Evolution Updates" },
         { name: "Private Twin Memory Space" },
         { name: "Unlimited Daily Reflections & Strategy Logs" },
-        { name: "Concierge AI Help for Complex Choices" },
+        { name: "more customizations and integrations" },
       ],
       isRecommended: false,
     },

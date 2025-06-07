@@ -61,7 +61,7 @@ const page = () => {
   };
 
   return (
-    <section className="bg-gradient-to-b from-black to-indigo-950 w-full h-screen overflow-hidden relative py-3">
+    <section className="bg-gradient-to-b from-black  to-[#7B68DA] w-full h-screen overflow-hidden relative py-3">
       <div className="w-full h-[350px] relative z-0">
         <Orb
           hoverIntensity={0.5}
@@ -87,7 +87,7 @@ const page = () => {
           <h3 className=" font-orbitron min-[1000px]:text-4xl min-[600px]:text-3xl text-2xl text-balance font-medium text-white tracking-tight text-center">
             Unlock Your Full Potential
           </h3>
-          <p className="bg-gradient-to-b from-white via-gray-400 to-indigo-900/30 text-transparent bg-clip-text min-[800px]:text-2xl text-xl font-medium tracking-tight text-balance mt-5 text-center font-sora">
+          <p className="text-gray-400 min-[800px]:text-2xl text-xl font-medium tracking-tight text-balance mt-5 text-center font-sora">
             Enter your email and we will send you Magic code! Remember to do not
             share code with anyone.
           </p>

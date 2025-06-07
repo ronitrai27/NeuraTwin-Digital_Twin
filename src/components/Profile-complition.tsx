@@ -366,8 +366,8 @@ export default function ProfileCompletion() {
 
   if (isCompleted) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center p-4">
-        <Card className="w-full max-w-2xl bg-gray-900/40 border border-indigo-500/30 backdrop-blur-xl relative z-10 shadow-2xl shadow-indigo-500/20">
+      <div className="min-h-screen bg-black flex items-center justify-center w-full">
+        <Card className="w-full max-w-2xl bg-gray-900 border border-indigo-500/30 backdrop-blur-xl relative z-10 shadow-2xl shadow-indigo-500/20">
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-transparent to-fuchsia-500/5 rounded-lg" />
           <CardContent className="p-8 md:p-12 relative z-10">
             <div className="text-center space-y-8">
@@ -489,21 +489,21 @@ export default function ProfileCompletion() {
   }
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center p-4">
-      <Card className="w-full max-w-2xl bg-gray-900/40 border border-indigo-500/30 backdrop-blur-xl relative z-10 shadow-2xl shadow-indigo-500/10">
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-transparent to-fuchsia-500/5 rounded-lg" />
-        <CardContent className="p-6 md:p-12 relative z-10">
+    <div className="min-h-screen bg-gradient-to-b from-black to-[#7B68DA] flex items-center justify-center min-[600px]:p-4">
+      <Card className="w-full max-w-2xl  bg-gray-900 border border-indigo-800/50 backdrop-blur-xl relative z-10 shadow-2xl shadow-indigo-500/10  max-[600px]:rounded-none max-[600px]:border-none max-[600px]:shadow-none max-[600px]:min-h-screen max-[600px]:w-screen ">
+        {/* <div className="absolute inset-0 bg-gradient-to-br from-red-500 via-transparent to-fuchsia-500/5 rounded-lg" /> */}
+        <CardContent className="px-5 py-6 md:px-6 md:py-8 relative z-10">
           {/* AI Status Bar */}
-          <div className="mb-8 p-4 bg-gray-900/40 border border-indigo-500/20 rounded-lg backdrop-blur-sm">
+          <div className="mb-8 p-4 bg-gray-800 border border-indigo-500/20 rounded-lg backdrop-blur-sm">
             <div className="flex items-center gap-3">
-              <div className="w-2 h-2 bg-fuchsia-400 rounded-full animate-pulse" />
-              <span className="text-indigo-300 text-sm font-mono">
+              <div className="w-2 h-2 bg-gray-300 rounded-full animate-pulse" />
+              <span className="text-indigo-300 text-sm font-sora">
                 {aiMessage}
               </span>
-              <div className="ml-auto flex gap-1">
-                <div className="w-1 h-4 bg-indigo-400 animate-pulse" />
-                <div className="w-1 h-4 bg-purple-400 animate-pulse delay-100" />
-                <div className="w-1 h-4 bg-fuchsia-400 animate-pulse delay-200" />
+              <div className="max-[360px]:hidden ml-auto flex gap-1">
+                <div className="w-1 h-4 bg-gray-400 animate-pulse" />
+                <div className="w-1 h-4 bg-indigo-400 animate-pulse delay-100" />
+                <div className="w-1 h-4 bg-indigo-600 animate-pulse delay-200" />
               </div>
             </div>
           </div>
@@ -513,9 +513,9 @@ export default function ProfileCompletion() {
             {/* Holographic Step Indicators */}
             <div className="flex justify-between items-center mb-8 relative">
               {/* Neural connection lines */}
-              <div className="absolute top-6 left-6 right-6 h-px bg-gradient-to-r from-indigo-500/30 via-purple-500/30 to-fuchsia-500/30">
+              <div className="absolute top-6 left-6 right-6 h-px bg-gradient-to-r from-gray-500/30 via-indigo-500/30 to-fuchsia-500/30">
                 <div
-                  className="h-full bg-gradient-to-r from-indigo-400 to-fuchsia-400 transition-all duration-1000 ease-out relative"
+                  className="h-full bg-gradient-to-r from-indigo-400 to-[#7B68DA] transition-all duration-1000 ease-out relative"
                   style={{
                     width: `${((currentStep - 1) / (steps.length - 1)) * 100}%`,
                   }}
@@ -535,9 +535,9 @@ export default function ProfileCompletion() {
                     className="flex flex-col items-center relative z-10"
                   >
                     <div
-                      className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 relative ${
+                      className={`w-12 h-12 max-[500px]:w-10 max-[500px]:h-10 rounded-full flex items-center justify-center transition-all duration-500 relative ${
                         isCompleted
-                          ? "bg-gradient-to-r from-indigo-400 to-fuchsia-400 text-black shadow-lg shadow-indigo-500/30"
+                          ? "bg-gradient-to-r from-indigo-300 to-indigo-600 text-black shadow-lg shadow-indigo-500/30"
                           : isActive
                             ? "bg-gray-900 text-indigo-300 ring-2 ring-indigo-400 shadow-lg shadow-indigo-500/20"
                             : "bg-gray-800 text-gray-500"
@@ -556,13 +556,13 @@ export default function ProfileCompletion() {
                     </div>
                     <div className="text-center mt-3 hidden md:block">
                       <div
-                        className={`text-xs font-medium transition-colors duration-300 font-mono ${
+                        className={`text-xs font-medium transition-colors duration-300 font-inter ${
                           isActive ? "text-indigo-300" : "text-gray-500"
                         }`}
                       >
                         {step.title}
                       </div>
-                      <div className="text-xs text-gray-600 mt-1 font-mono">
+                      <div className="text-xs text-gray-600 mt-1 font-inter">
                         {step.subtitle}
                       </div>
                     </div>
@@ -573,10 +573,10 @@ export default function ProfileCompletion() {
 
             {/* Mobile Step Info */}
             <div className="md:hidden text-center mb-6">
-              <div className="text-indigo-300 font-medium font-mono">
+              <div className="text-indigo-300 font-medium font-inter">
                 {steps[currentStep - 1].title}
               </div>
-              <div className="text-gray-400 text-sm font-mono">
+              <div className="text-gray-400 text-sm font-inter">
                 {steps[currentStep - 1].subtitle}
               </div>
             </div>
@@ -584,13 +584,13 @@ export default function ProfileCompletion() {
             {/* Holographic Progress Bar */}
             <div className="w-full bg-gray-800/50 rounded-full h-2 mb-2 border border-indigo-500/20">
               <div
-                className="bg-gradient-to-r from-indigo-400 to-fuchsia-400 h-full rounded-full transition-all duration-1000 ease-out relative"
+                className="bg-gradient-to-r from-indigo-300 to-[#7B68DA] h-full rounded-full transition-all duration-1000 ease-out relative"
                 style={{ width: `${(currentStep / steps.length) * 100}%` }}
               >
                 <div className="absolute right-0 top-1/2 w-1 h-4 bg-indigo-300 transform -translate-y-1/2 animate-pulse" />
               </div>
             </div>
-            <div className="flex justify-between text-xs text-indigo-400/80 font-mono">
+            <div className="flex justify-between text-xs text-gray-400/80 font-inter">
               <span>Neural Scan {currentStep}</span>
               <span>{steps.length} protocols</span>
             </div>
@@ -599,7 +599,7 @@ export default function ProfileCompletion() {
           {/* Content Section */}
           <div className="space-y-8">
             <div className="text-center space-y-2">
-              <h2 className="text-3xl md:text-4xl font-light text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-300 to-fuchsia-300 tracking-tight">
+              <h2 className="text-3xl md:text-4xl font-light bg-clip-text text-white tracking-tight font-sora">
                 {currentStep === 1 && "Neural Identity Scan"}
                 {currentStep === 2 && "Data Link Protocol"}
                 {currentStep === 3 && "Temporal Analysis"}
@@ -607,7 +607,7 @@ export default function ProfileCompletion() {
                 {currentStep === 5 && "Role Classification"}
                 {currentStep === 6 && "Mission Parameters"}
               </h2>
-              <p className="text-indigo-400/80 font-mono text-sm">
+              <p className="text-gray-400 font-inter text-[16px] capitalize">
                 {currentStep === 1 && "Initializing identity matrix..."}
                 {currentStep === 2 && "Establishing secure data channel..."}
                 {currentStep === 3 && "Analyzing temporal coordinates..."}
@@ -622,14 +622,14 @@ export default function ProfileCompletion() {
                 <div className="space-y-3">
                   <Label
                     htmlFor="name"
-                    className="text-indigo-300 text-sm font-medium font-mono"
+                    className="text-indigo-300 text-[14px] font-medium font-inter"
                   >
-                    Identity Matrix
+                    Your Name:
                   </Label>
                   <Input
                     id="name"
                     type="text"
-                    placeholder="Enter neural identity signature"
+                    placeholder="E.g., John Doe"
                     value={profileData.name}
                     onChange={(e) => updateProfileData("name", e.target.value)}
                     className="bg-gray-900/60 border border-indigo-500/30 text-indigo-100 placeholder:text-indigo-500/50 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all duration-300 h-12 rounded-xl backdrop-blur-sm font-mono"
@@ -649,12 +649,12 @@ export default function ProfileCompletion() {
                     htmlFor="email"
                     className="text-indigo-300 text-sm font-medium font-mono"
                   >
-                    Data Channel
+                    Your Email:
                   </Label>
                   <Input
                     id="email"
                     type="email"
-                    placeholder="neural.link@matrix.net"
+                    placeholder="E.g., John@neural.com"
                     value={profileData.email}
                     onChange={(e) => updateProfileData("email", e.target.value)}
                     className="bg-gray-900/60 border border-indigo-500/30 text-indigo-100 placeholder:text-indigo-500/50 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all duration-300 h-12 rounded-xl backdrop-blur-sm font-mono"
@@ -674,7 +674,7 @@ export default function ProfileCompletion() {
                     htmlFor="dob"
                     className="text-indigo-300 text-sm font-medium font-mono"
                   >
-                    Temporal Coordinates
+                    Your DOB:
                   </Label>
                   <Input
                     id="dob"
@@ -683,7 +683,7 @@ export default function ProfileCompletion() {
                     onChange={(e) =>
                       updateProfileData("dateOfBirth", e.target.value)
                     }
-                    className="bg-gray-900/60 border border-indigo-500/30 text-indigo-100 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all duration-300 h-12 rounded-xl backdrop-blur-sm font-mono"
+                    className="bg-gray-800 border border-indigo-500/30 text-indigo-100 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all duration-300 h-12 rounded-xl backdrop-blur-sm font-mono"
                   />
                 </div>
               )}
@@ -691,7 +691,7 @@ export default function ProfileCompletion() {
               {currentStep === 4 && (
                 <div className="space-y-3">
                   <Label className="text-indigo-300 text-sm font-medium font-mono">
-                    Bio Markers
+                    Gender:
                   </Label>
                   <Select
                     value={profileData.gender}
@@ -699,15 +699,15 @@ export default function ProfileCompletion() {
                       updateProfileData("gender", value)
                     }
                   >
-                    <SelectTrigger className="bg-gray-900/60 border border-indigo-500/30 text-indigo-100 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all duration-300 h-12 rounded-xl backdrop-blur-sm font-mono">
-                      <SelectValue placeholder="Select bio marker classification" />
+                    <SelectTrigger className="bg-gray-900/60 border border-indigo-500/30 text-indigo-100 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all duration-300 h-12 rounded-xl backdrop-blur-sm font-mono w-full">
+                      <SelectValue placeholder="Select your Gender " />
                     </SelectTrigger>
                     <SelectContent className="bg-gray-900 border border-indigo-500/30 backdrop-blur-xl">
                       {genders.map((gender) => (
                         <SelectItem
                           key={gender}
                           value={gender}
-                          className="text-indigo-100 hover:bg-indigo-800/30 focus:bg-indigo-800/30 transition-colors duration-200 font-mono"
+                          className="text-indigo-100 hover:bg-indigo-400/30 focus:bg-indigo-400/30 focus:text-white transition-colors duration-200 font-mono"
                         >
                           {gender}
                         </SelectItem>
@@ -905,7 +905,7 @@ export default function ProfileCompletion() {
                 onClick={prevStep}
                 disabled={currentStep === 1}
                 variant="ghost"
-                className="text-indigo-400 hover:text-indigo-300 hover:bg-gray-800/50 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 h-12 px-6 rounded-xl border border-indigo-500/20 font-mono"
+                className="text-indigo-400 hover:text-indigo-300 hover:bg-gray-800/50 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300  h-10 px-6 rounded-xl border border-indigo-500/20 font-mono"
               >
                 <ChevronLeft className="w-4 h-4 mr-2" />
                 Previous
@@ -914,7 +914,7 @@ export default function ProfileCompletion() {
               <Button
                 onClick={nextStep}
                 disabled={!isStepValid()}
-                className="bg-gradient-to-r from-indigo-600 via-purple-600 to-fuchsia-600 hover:from-indigo-500 hover:via-purple-500 hover:to-fuchsia-500 text-black disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-[1.02] h-12 px-8 rounded-xl font-bold shadow-lg hover:shadow-indigo-500/25 border border-indigo-400/30"
+                className="bg-gradient-to-r from-indigo-300 to-indigo-600 hover:from-indigo-500 hover:via-purple-800 hover:to-fuchsia-500 text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-[1.02] h-10 px-6 rounded-xl font-bold shadow-lg hover:shadow-indigo-500/25 border border-indigo-400/30"
               >
                 {currentStep === steps.length ? (
                   <span className="flex items-center gap-2">

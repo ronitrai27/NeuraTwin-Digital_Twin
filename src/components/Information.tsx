@@ -7,40 +7,41 @@ const Information = () => {
     {
       title: "Goals",
       description:
-        "Set unlimited personal goals, track progress, and pause or resume anytime.",
+        "Define unlimited personal goals, track your journey, and seamlessly pause or resume whenever needed.",
       icon: <Target className="h-8 w-8 text-indigo-500" />,
     },
     {
       title: "Milestones",
       description:
-        "Achieve goals step-by-step and unlock motivational milestones.",
+        "Break down your goals into achievable milestones and unlock motivation as you progress.",
       icon: <Trophy className="h-8 w-8 text-indigo-500" />,
     },
     {
       title: "OCEAN Personality",
       description:
-        "AI analyzes your behavior to understand your OCEAN personality traits.",
+        "Gain insights into your core traits as the AI decodes your unique personality using the OCEAN model.",
       icon: <Brain className="h-8 w-8 text-indigo-500" />,
     },
     {
       title: "Growth Tracker",
       description:
-        "Monitor your personal development via journals, milestones, and traits.",
+        "Visualize your self-development through AI-powered tracking of journals, behaviors, and achievements.",
       icon: <LineChart className="h-8 w-8 text-indigo-500" />,
     },
     {
       title: "Smart Journals",
       description:
-        "Write freely and let AI reflect insights from your daily experiences.",
+        "Document your thoughts freely while the AI extracts meaningful reflections from your daily life.",
       icon: <BookOpen className="h-8 w-8 text-indigo-500" />,
     },
     {
       title: "AI Twin",
       description:
-        "Chat with your AI twin that guides, motivates, and reflects your inner self.",
+        "Interact with your intelligent digital twin—an ever-evolving companion that guides, supports, and mirrors your growth.",
       icon: <Bot className="h-8 w-8 text-indigo-500" />,
     },
   ];
+
   return (
     <section className="bg-gradient-to-b from-indigo-900 to-black min-h-screen w-full relative mb-14 pt-14 min-[1000px]:px-8 px-3">
       {/* <div className="w-1/2  absolute -top-10 left-1/2 -translate-x-1/2 z-0 ">
@@ -64,13 +65,13 @@ const Information = () => {
         {features.map((feature, index) => (
           <div
             key={index}
-            className="bg-transparent rounded-2xl shadow-md px-4 py-6 flex flex-col items-start hover:shadow-xl transition duration-300 relative w-[350px] overflow-hidden mx-auto"
+            className="bg-gray-100 rounded-2xl shadow-md px-4 py-6 flex flex-col items-start hover:shadow-xl transition duration-300 relative w-[350px] overflow-hidden mx-auto"
           >
             {feature.icon}
-            <h3 className="font-sora text-[20px] font-medium mt-2 bg-gradient-to-b from-white via-gray-400 to-indigo-800/20 text-transparent bg-clip-text ">
+            <h3 className="font-sora text-[20px] font-medium mt-2 bg-gradient-to-b from-black via-gray-600 to-indigo-800/30 text-transparent bg-clip-text ">
               {feature.title}
             </h3>
-            <p className="mt-2 font-inter text-[18px] tracking-normal text-balance text-gray-200">
+            <p className="mt-2 font-inter text-[18px] tracking-normal text-balance text-gray-800">
               {feature.description}
             </p>
 

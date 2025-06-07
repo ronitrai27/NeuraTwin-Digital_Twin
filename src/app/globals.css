@@ -11,6 +11,9 @@
   --font-outfit: "Outfit", sans-serif;
 }
 
+@layer utilities{
+  
+}
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);

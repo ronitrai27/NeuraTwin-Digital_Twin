@@ -34,7 +34,7 @@ const Navbar = () => {
     >
       <div className="flex items-center justify-between">
         {/* LINKS */}
-        <nav className="hidden min-[820px]:inline-flex gap-6 items-center font-inter text-[16px] tracking-tight font-medium text-gray-400">
+        <nav className="hidden min-[820px]:inline-flex gap-6 items-center font-inter text-[18px] tracking-tight font-medium text-gray-400">
           <Link href="/reachus" className="hover:text-deep">
             Reach us
           </Link>
@@ -51,7 +51,7 @@ const Navbar = () => {
         {/* LOGO (Desktop) */}
         <Link href="/">
           <h2
-            className={`font-sora font-semibold tracking-tight transition-all duration-300 text-white ${
+            className={`font-sora font-semibold tracking-tight transition-all duration-300 text-white  ${
               isSticky ? "text-[26px]" : "text-[32px]"
             }`}
           >
@@ -66,11 +66,11 @@ const Navbar = () => {
         <div className="flex items-center">
           <Link href="/login">
             <button
-              className={` min-[820px]:px-5 px-3 py-2 transition-all duration-300 bg-gradient-to-r from-indigo-200  to-indigo-500 rounded-xl cursor-pointer ${
+              className={` min-[820px]:px-5 px-3 py-[6px] transition-all duration-300 bg-gradient-to-r from-indigo-300  to-indigo-700 rounded-lg cursor-pointer ${
                 isSticky ? "scale-90" : "scale-100"
               }`}
             >
-              <span className="whitespace-pre-wrap text-center font-inter text-[16px] text-gray-800 font-medium">
+              <span className="whitespace-pre-wrap text-center font-inter text-[16px] text-white font-medium">
                 Log in
               </span>
             </button>
