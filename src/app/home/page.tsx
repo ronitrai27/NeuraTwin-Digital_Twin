@@ -9,10 +9,12 @@ import Orb from "../../components/ui/Orb";
 import { useSpeech } from "@/lib/useSpeech";
 import styled from "styled-components";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 const page = () => {
   const { currentUser, setCurrentUser } = useAppContext();
   const { speak, isSpeaking } = useSpeech();
+  const router = useRouter();
 
   // ------------------ FETCH USER DATA -------------------------
   useEffect(() => {
@@ -34,23 +36,31 @@ const page = () => {
   // ------------------------SPEAKING --------------------------
 
   useEffect(() => {
-    const shouldGreet = Cookies.get("firstLogin");
+    const timer = setTimeout(() => {
+      const shouldGreet = Cookies.get("firstLogin");
+      // console.log(" Checking for firstLogin cookie:", shouldGreet);
 
-    if (currentUser?.name && !shouldGreet) {
-      // Delay greeting to ensure everything is ready
-      const timer = setTimeout(() => {
-        speak(`Welcome ${currentUser.name}, `, {
-          rate: 1,
-          pitch: 1.1,
-          lang: "en-US",
-          voiceName: "Microsoft Hazel - English (United Kingdom)",
-        });
+      if (currentUser?.name && shouldGreet) {
+        // console.log(" Cookie found. Initiating greeting...");
+
+        speak(
+          `Welcome ${currentUser.name},I'm your AI-powered twin. I will help you become better. I will guide you through your journey. Are you Ready!`,
+          {
+            rate: 1,
+            pitch: 1.1,
+            lang: "en-US",
+            voiceName: "Microsoft Hazel - English (United Kingdom)",
+          }
+        );
 
         Cookies.remove("firstLogin");
-      }, 1000); // 1s delay
+        // console.log("🧹 firstLogin cookie removed after greeting.");
+      } else {
+        console.log(" Greeting not triggered. Conditions not met.");
+      }
+    }, 1000);
 
-      return () => clearTimeout(timer);
-    }
+    return () => clearTimeout(timer);
   }, [currentUser]);
 
   // ---------------------------------------RANDOME GREETING -------------------------------------
@@ -127,6 +137,23 @@ const page = () => {
     }
   }, [index, fullText]);
 
+  // TEMP LOGOUT FUNCTION---------------------
+  const handleLogout = async () => {
+    try {
+      const res = await api.post("/api/user/logout");
+
+      if (res.data.success) {
+        setCurrentUser(null);
+        toast.success("Logged out successfully");
+        router.push("/login"); // redirect after logout
+      } else {
+        toast.error(res.data.message || "Logout failed");
+      }
+    } catch (err: any) {
+      toast.error(err.response?.data?.message || "Logout failed");
+    }
+  };
+
   return (
     <section className="bg-gradient-to-b from-black  to-[#7B68DA] w-full min-h-screen">
       <HeroNav />
@@ -169,6 +196,13 @@ const page = () => {
           </div>
         </div>
       </main>
+      {/* TEMPORARY */}
+      <button
+        onClick={handleLogout}
+        className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition"
+      >
+        Logout
+      </button>
     </section>
   );
 };
