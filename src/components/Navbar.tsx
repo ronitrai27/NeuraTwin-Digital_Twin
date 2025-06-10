@@ -52,7 +52,7 @@ const Navbar = () => {
         <Link href="/">
           <h2
             className={`font-sora font-semibold tracking-tight transition-all duration-300 text-white  ${
-              isSticky ? "text-[26px]" : "text-[32px]"
+              isSticky ? "text-[26px]" : "text-[30px]"
             }`}
           >
             <span className="bg-gradient-to-b from-white via-gray-400 to-indigo-600 text-transparent bg-clip-text [-webkit-background-clip:text]">

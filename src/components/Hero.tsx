@@ -3,7 +3,6 @@ import React from "react";
 import Spline from "@splinetool/react-spline";
 // import { LuArrowUpRight } from "react-icons/lu";
 import Link from "next/link";
-import Button from "./Items/MainButton";
 const Hero = () => {
   return (
     <section className="w-full overflow-hidden relative min-[768px]:px-8 px-4 py-2">
@@ -30,7 +29,9 @@ const Hero = () => {
 
         <div className="flex flex-col w-full items-center justify-center mt-20 gap-5">
           <Link href="/login">
-            <Button text="Get Started" />
+            <button className="bg-gradient-to-b from-indigo-400 to-indigo-700 text-white font-sora px-6 py-3 rounded-lg hover:from-indigo-600 hover:to-indigo-800 transition-colors duration-300">
+              Get Started
+            </button>
           </Link>
           <p className="font-orbitron underline underline-offset-4 text-gray-400">
             Terms & Conditions Applied

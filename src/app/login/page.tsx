@@ -37,6 +37,7 @@ const page = () => {
     }
   };
   const email = Cookies.get("temp_email");
+
   const handleVerifyOtp = async (otp: string) => {
     try {
       const res = await api.post("/api/auth/verify-otp", {
@@ -45,13 +46,18 @@ const page = () => {
       });
 
       if (res.data.success) {
-        toast.success("OTP Verified!");
+        const toastId = toast.success("OTP Verified!");
 
-        if (res.data.newUser) {
-          router.push("/profile-update");
-        } else {
-          router.push("/");
-        }
+        setTimeout(() => {
+          toast.dismiss(toastId); // Dismiss the first toast
+          toast.loading("Redirecting...");
+
+          if (res.data.newUser) {
+            router.push("/profile-update");
+          } else {
+            router.push("/home");
+          }
+        }, 2000);
       } else {
         toast.error("Invalid or expired OTP");
       }

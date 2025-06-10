@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import toast from "react-hot-toast";
 
 const OtpForm = ({
@@ -49,7 +49,31 @@ const OtpForm = ({
       inputsRef.current[index + 1]?.focus();
     }
   };
+  // TIMER COUNTDOWN
+  const [timeLeft, setTimeLeft] = useState(120); // 2 minutes
 
+  // Countdown timer
+  useEffect(() => {
+    if (timeLeft <= 0) {
+      toast.error("OTP expired. Please request new.");
+      return;
+    }
+
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timeLeft]);
+
+  // Format time as MM:SS
+  const formatTime = (secs: number) => {
+    const minutes = Math.floor(secs / 60);
+    const seconds = secs % 60;
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  };
+
+  // HANDLE VERIFY CLICK
   const handleVerifyClick = async () => {
     const finalOtp = otp.join("");
     if (finalOtp.length === 6) {
@@ -57,7 +81,7 @@ const OtpForm = ({
         setLoading(true);
         await onVerify(finalOtp);
       } catch (error) {
-        alert("Verification failed.");
+        toast.error("Verification failed.");
       } finally {
         setLoading(false);
       }
@@ -91,7 +115,7 @@ const OtpForm = ({
 
       <button
         onClick={handleVerifyClick}
-        disabled={loading}
+        disabled={loading || timeLeft <= 0}
         className={`mt-10 mx-auto block px-6 py-3 ${
           loading
             ? "bg-indigo-400 cursor-not-allowed"
@@ -101,7 +125,12 @@ const OtpForm = ({
         {loading ? "Verifying..." : "Verify Code"}
       </button>
 
-      <p className="text-center text-sm text-gray-300 mt-3 font-sora text-balance">
+      <p className="text-center mt-5 text-sm text-gray-300 font-inter">
+        Your Magic code Expires in:{" "}
+        <span className="font-semibold text-white">{formatTime(timeLeft)}</span>
+      </p>
+
+      <p className="text-center text-sm text-gray-300 mt-5 font-sora text-balance">
         Check your email for the OTP we sent. If you want to resend the code{" "}
         <span className="font-inter text-indigo-400 font-light underline underline-offset-4 cursor-pointer">
           Click Here
