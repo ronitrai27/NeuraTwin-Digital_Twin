@@ -33,7 +33,7 @@ const Hero = () => {
               Get Started
             </button>
           </Link>
-          <p className="font-orbitron underline underline-offset-4 text-gray-400">
+          <p className="font-orbitron underline underline-offset-4 text-gray-400 text-center">
             Terms & Conditions Applied
           </p>
         </div>
