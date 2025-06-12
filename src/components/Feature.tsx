@@ -10,7 +10,7 @@ const Feature = () => {
       <h1 className="font-orbitron text-4xl min-[800px]:text-5xl tracking-tight text-white mt-4 text-center px-4">
         New Way To Dominate Compitition
       </h1>
-      <main className="relative w-full bg-gradient-to-b from-black via-indigo-950 to-indigo-900 pb-[100px]">
+      <main className="relative w-full  pb-10">
         <div className="min-[600px]:px-10 px-6">
           <div className="relative bg-gray-900 w-full flex flex-col min-[700px]:max-w-2xl min-[1000px]:max-w-5xl mx-auto min-[900px]:h-[480px] h-[400px] mt-20 px-6 py-6 overflow-hidden rounded-2xl">
             <div className="flex flex-col max-[600px]:items-center max-[600px]:text-center max-[600px]:gap-6 min-[600px]:justify-between min-[600px]:flex-row gap-10 w-full items-center">

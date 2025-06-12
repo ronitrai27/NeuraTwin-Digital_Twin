@@ -4,7 +4,6 @@ import Hero from "@/components/Hero";
 import Information from "@/components/Information";
 import { LogoTicker } from "@/components/LogoTicker";
 import Navbar from "@/components/Navbar";
-import PricingSection from "@/components/PricingSection";
 export default function Home() {
   return (
     <div className="relative overflow-hidden bg-black scroll-smooth ">
@@ -14,7 +13,6 @@ export default function Home() {
       <Card />
       <Feature />
       <Information />
-      <PricingSection />
     </div>
   );
 }
