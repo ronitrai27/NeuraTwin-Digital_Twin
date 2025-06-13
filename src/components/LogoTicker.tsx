@@ -30,8 +30,8 @@ export const LogoTicker = () => {
               ease: "linear",
               repeat: Infinity,
             }}
-            initial={{ translateX: 0 }}
-            animate={{ translateX: "-50%" }}
+            initial={{ x: 0 }}
+            animate={{ x: "-50%" }}
             className="flex gap-16 flex-none "
           >
             {images.map((image, index) => (

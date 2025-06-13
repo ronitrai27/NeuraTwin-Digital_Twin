@@ -49,7 +49,7 @@ export default function BentoGrid() {
                 AI Assistant that is Always Available for your needs.
               </div>
             </div>
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-transparent to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            {/* <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-transparent to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div> */}
           </div>
 
           {/* Marquee card with scrolling capabilities */}
@@ -78,7 +78,7 @@ export default function BentoGrid() {
               </div>
             </div>
 
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-transparent to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            {/* <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-transparent to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div> */}
           </div>
 
           {/* Main feature card with cursor tracking */}
