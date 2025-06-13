@@ -9,12 +9,10 @@ import Orb from "../../components/ui/Orb";
 import { useSpeech } from "@/lib/useSpeech";
 import styled from "styled-components";
 import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
 
 const page = () => {
   const { currentUser, setCurrentUser } = useAppContext();
   const { speak, isSpeaking } = useSpeech();
-  const router = useRouter();
 
   // ------------------ FETCH USER DATA -------------------------
   useEffect(() => {
@@ -137,23 +135,6 @@ const page = () => {
     }
   }, [index, fullText]);
 
-  // TEMP LOGOUT FUNCTION---------------------
-  const handleLogout = async () => {
-    try {
-      const res = await api.post("/api/user/logout");
-
-      if (res.data.success) {
-        setCurrentUser(null);
-        toast.success("Logged out successfully");
-        router.push("/login"); // redirect after logout
-      } else {
-        toast.error(res.data.message || "Logout failed");
-      }
-    } catch (err: any) {
-      toast.error(err.response?.data?.message || "Logout failed");
-    }
-  };
-
   return (
     <section className="bg-gradient-to-b from-black  to-[#7B68DA] w-full min-h-screen">
       <HeroNav />
@@ -196,13 +177,6 @@ const page = () => {
           </div>
         </div>
       </main>
-      {/* TEMPORARY */}
-      <button
-        onClick={handleLogout}
-        className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition"
-      >
-        Logout
-      </button>
     </section>
   );
 };

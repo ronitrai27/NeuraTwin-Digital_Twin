@@ -39,17 +39,16 @@ export default function BentoGrid() {
               Preview
             </div>
             <div className="text-center md:text-left">
-              <div className="text-3xl font-bold font-orbitron text-white mb-2 group-hover:scale-110 transition-transform duration-300">
+              <div className="text-3xl font-bold font-sora text-white mb-2 group-hover:scale-110 transition-transform duration-300">
                 AI TWIN
               </div>
               <div
-                className="text-indigo-100 font-medium group-hover:text-white transition-colors duration-300 text-[20px] font-sora text-left max-[600px]:text-center
+                className="text-indigo-100 font-medium group-hover:text-white transition-colors duration-300 text-[20px] font-inter text-left max-[600px]:text-center
               "
               >
                 AI Assistant that is Always Available for your needs.
               </div>
             </div>
-            {/* <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-transparent to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div> */}
           </div>
 
           {/* Marquee card with scrolling capabilities */}
@@ -88,10 +87,10 @@ export default function BentoGrid() {
             </div>
             <div className="flex-1 flex flex-col md:flex-row items-center justify-between text-center md:text-left">
               <div className="flex-1">
-                <h3 className="text-3xl font-bold text-white mb-2 group-hover:text-indigo-300 transition-colors duration-300 font-orbitron">
+                <h3 className="text-3xl font-bold text-white mb-2 group-hover:text-indigo-300 transition-colors duration-300 font-sora">
                   Your Digital Reflection
                 </h3>
-                <p className="bg-gradient-to-b from-white via-gray-400 to-indigo-800/30 text-transparent bg-clip-text [-webkit-background-clip:text] text-[20px] leading-relaxed group-hover:text-gray-300 transition-colors duration-300 font-sora">
+                <p className="bg-gradient-to-b from-white via-gray-400 to-transparent text-transparent bg-clip-text [-webkit-background-clip:text] text-[20px] leading-relaxed group-hover:text-gray-300 transition-colors duration-300 font-inter">
                   It becomes you — it learns your patterns, understands your
                   mind, and helps you stay accountable in your own language and
                   rhythm.
@@ -112,7 +111,7 @@ export default function BentoGrid() {
           </div>
 
           {/* Mobile interface card with pulse animation */}
-          <div className="bg-gradient-to-br from-gray-600  to-gray-950 rounded-2xl  flex flex-col p-4 justify-center items-center  lg:col-span-1 lg:row-span-1 min-h-[280px] group hover:bg-gray-800 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20">
+          <div className="max-[600px]:hidden bg-gradient-to-br from-gray-600  to-gray-950 rounded-2xl  flex flex-col p-4 justify-center items-center  lg:col-span-1 lg:row-span-1 min-h-[280px] group hover:bg-gray-800 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20">
             <div>
               <div className="text-sm font-medium text-indigo-500 bg-gray-100 rounded-full px-3 py-1 w-fit font-sora uppercase max-[500px]:self-center mb-5 mx-auto">
                 UNLEASH
@@ -171,7 +170,7 @@ export default function BentoGrid() {
                   )}
                 </div>
               </div>
-              <div className="mt-4 md:mt-0 md:ml-8 relative">
+              <div className="max-[600px]:mt-10 mt-0 md:ml-8 relative">
                 <div className="relative overflow-hidden rounded-xl group-hover:scale-105 transition-transform duration-500">
                   <Image
                     src="/neura2.jpg"

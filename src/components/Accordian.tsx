@@ -72,7 +72,7 @@ export function AccordionDemo() {
                   aria-controls={`faq-answer-${index}`}
                   id={`faq-question-${index}`}
                 >
-                  <h3 className="text-lg md:text-xl font-medium font-orbitron text-white tracking-tight">
+                  <h3 className="text-lg md:text-xl font-medium font-sora text-white tracking-tight">
                     {item.question}
                   </h3>
                   <motion.div
@@ -94,10 +94,10 @@ export function AccordionDemo() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.2 }}
                       className="overflow-hidden"
                     >
-                      <div className="pb-4 text-gray-300 font-roboto">
+                      <div className="pb-4 text-gray-300 font-inter">
                         {item.answer}
                       </div>
                     </motion.div>
