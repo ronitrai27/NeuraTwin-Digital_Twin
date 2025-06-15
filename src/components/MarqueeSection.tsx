@@ -62,7 +62,7 @@ export function ThreeDMarqueeDemoSecond() {
       </div>
 
       {/* overlay */}
-      <div className="absolute inset-0 z-10 h-full w-full bg-black/80 dark:bg-black/40" />
+      <div className="absolute inset-0 z-10 h-full w-full bg-black/60" />
       <ThreeDMarquee
         className="pointer-events-none absolute inset-0 h-full w-full"
         images={images}

@@ -15,7 +15,12 @@ import { useRouter } from "next/navigation";
 import api from "@/lib/api";
 import toast from "react-hot-toast";
 
-const HeroNav = () => {
+interface HeroNavProps {
+  toggleSidebar: () => void;
+  isSidebarOpen: boolean;
+}
+
+const HeroNav: React.FC<HeroNavProps> = ({ toggleSidebar, isSidebarOpen }) => {
   const router = useRouter();
   const { currentUser, setCurrentUser } = useAppContext();
   const [isOpen, setIsOpen] = useState(false);
@@ -40,9 +45,9 @@ const HeroNav = () => {
       const res = await api.post("/api/user/logout");
 
       if (res.data.success) {
-        setCurrentUser(null);
         toast.success("Logged out successfully");
-        router.push("/login"); // redirect after logout
+        router.push("/login");
+        setCurrentUser(null);
       } else {
         toast.error(res.data.message || "Logout failed");
       }
@@ -55,10 +60,16 @@ const HeroNav = () => {
     <nav className="bg-transparent w-full max-[420px]:px-3 max-[600px]:px-6 px-10 py-3 flex items-center justify-between relative z-50">
       {/* MENU */}
       <div>
-        <LuAlignLeft
-          size={24}
-          className="text-white cursor-pointer md:scale-x-125"
-        />
+        <button
+          type="button"
+          onClick={toggleSidebar}
+          aria-label="Toggle Sidebar"
+        >
+          <LuAlignLeft
+            size={24}
+            className="text-white cursor-pointer md:scale-x-125"
+          />
+        </button>
       </div>
 
       {/* LOGO */}
@@ -72,7 +83,7 @@ const HeroNav = () => {
       </div>
 
       {/* PROFILE */}
-      <div className="relative flex items-center gap-2">
+      <div className="relative flex items-center gap-2 ">
         <Image
           onClick={() => setIsOpen((prev) => !prev)}
           src={
@@ -86,9 +97,16 @@ const HeroNav = () => {
           sizes="(min-width: 1000px) 100px, (min-width: 500px) 70px, 45px"
           className="rounded-full w-[45px] sm:w-[50px] xl:w-[60px] h-auto cursor-pointer"
         />
-        <p className="max-[500px]:hidden font-sora text-white text-[18px] capitalize">
+        {/* <p className="max-[500px]:hidden font-sora text-white text-[18px] capitalize">
           {currentUser?.name || "User"}
-        </p>
+        </p> */}
+        {currentUser?.name ? (
+          <p className="max-[500px]:hidden font-sora text-white text-[18px] capitalize">
+            {currentUser?.name}
+          </p>
+        ) : (
+          <div className="w-16 h-5 rounded-full bg-gray-400 animate-pulse transition-all duration-300"></div>
+        )}
 
         {/* DROPDOWN */}
         <AnimatePresence>
@@ -109,7 +127,7 @@ const HeroNav = () => {
                     <h4 className="font-semibold text-[16px] text-black capitalize font-sora tracking-tight">
                       {currentUser?.name || "User"}
                     </h4>
-                    <p className="text-sm text-gray-400/80 truncate overflow-hidden tracking-tighter italic font-outfit">
+                    <p className="text-sm min-[600px]:text-base text-gray-400/80 truncate overflow-hidden tracking-tighter italic font-outfit">
                       {currentUser?.email || "user@example.com"}
                     </p>
                   </div>
@@ -117,7 +135,7 @@ const HeroNav = () => {
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  className="text-indigo-800"
+                  className="text-indigo-800 cursor-pointer"
                   aria-label="Close dropdown"
                 >
                   <LuX size={20} />

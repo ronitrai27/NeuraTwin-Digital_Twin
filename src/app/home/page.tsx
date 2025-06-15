@@ -4,45 +4,26 @@ import { useEffect, useState } from "react";
 import { useAppContext } from "@/context/AppContext";
 import api from "@/lib/api";
 import toast from "react-hot-toast";
-import HeroNav from "@/components/Hero-nav";
+// import HeroNav from "@/components/Hero-nav";
 import Orb from "../../components/ui/Orb";
 import { useSpeech } from "@/lib/useSpeech";
 import styled from "styled-components";
 import Cookies from "js-cookie";
+// import Sidebar from "@/components/Hero-sidebar";
+import { LuMail, LuMailOpen, LuBell } from "react-icons/lu";
 
 const page = () => {
-  const { currentUser, setCurrentUser } = useAppContext();
+  const { currentUser, loading, orbSpeak } = useAppContext();
   const { speak, isSpeaking } = useSpeech();
-
-  // ------------------ FETCH USER DATA -------------------------
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const res = await api.get("/api/user/me");
-        if (res.data.success) {
-          setCurrentUser(res.data.user);
-        } else {
-          toast.error("Failed to load user");
-        }
-      } catch (err: any) {
-        toast.error("User not logged in or token invalid");
-      }
-    };
-
-    if (!currentUser) fetchUser();
-  }, []);
   // ------------------------SPEAKING --------------------------
 
   useEffect(() => {
     const timer = setTimeout(() => {
       const shouldGreet = Cookies.get("firstLogin");
-      // console.log(" Checking for firstLogin cookie:", shouldGreet);
 
       if (currentUser?.name && shouldGreet) {
-        // console.log(" Cookie found. Initiating greeting...");
-
         speak(
-          `Welcome ${currentUser.name},I'm your AI-powered twin. I will help you become better. I will guide you through your journey. Are you Ready!`,
+          `Welcome ${currentUser.name}. I am your own AI-powered twin. I will help you become better. I will guide you through your journey. Are you Ready!`,
           {
             rate: 1,
             pitch: 1.1,
@@ -52,7 +33,6 @@ const page = () => {
         );
 
         Cookies.remove("firstLogin");
-        // console.log("🧹 firstLogin cookie removed after greeting.");
       } else {
         console.log(" Greeting not triggered. Conditions not met.");
       }
@@ -99,10 +79,6 @@ const page = () => {
   const greetings = [
     (name: string) => `Welcome ${name}`,
     (name: string) => `How's going ${name}?`,
-    (name: string) => `Don't stop ${name}`,
-    (name: string) => `Hard day ${name}?`,
-    (name: string) => `Keep hustling ${name}`,
-    (name: string) => `You doing great ${name}`,
     (name: string) => `Keep it up ${name}`,
   ];
 
@@ -136,21 +112,34 @@ const page = () => {
   }, [index, fullText]);
 
   return (
-    <section className="bg-gradient-to-b from-black  to-[#7B68DA] w-full min-h-screen">
-      <HeroNav />
-      <main className="p-4 min-[600px]:py-6 min-[600px]:px-8 max-w-[1200px] mx-auto  h-full">
-        <div className=" flex flex-col items-start">
-          <h1 className="font-sora text-left text-[22px] min-[600px]:text-[32px] min-[1000px]:text-[38px] text-white font-medium tracking-tight capitalize">
-            {text}
-          </h1>
-          <p className="text-gray-400 font-outfit text-[18px] font-light">
-            {dayInfo.day}, {dayInfo.year}
-          </p>
-        </div>
+    <section className="bg-gradient-to-b from-black  to-[#7B68DA]  min-h-screen w-full relative">
+      <main className="p-4 min-[600px]:py-6 min-[600px]:px-8 max-w-[1000px] mx-auto  h-full">
+        {/* <div className=" flex flex-col items-start"> */}
+        {loading ? (
+          <>
+            <div className="w-1/2 h-5 rounded-xl bg-gray-400 animate-pulse duration-500 transition-all"></div>
+            <div className="w-1/4 h-3 rounded-xl bg-gray-400 animate-pulse duration-500 transition-all mt-2"></div>
+          </>
+        ) : (
+          <div className="flex items-center justify-between gap-5">
+            <div className="flex flex-col">
+              <h1 className="font-sora text-left text-[22px] min-[600px]:text-[32px] min-[1000px]:text-[38px] text-white font-medium tracking-tight capitalize text-balance">
+                {text}
+              </h1>
+              <p className="text-gray-400 font-outfit text-[18px] font-light">
+                {dayInfo.day}, {dayInfo.year}
+              </p>
+            </div>
+            <div className="w-11 h-11 bg-gray-400/30 rounded-lg flex items-center justify-center shrink-0">
+              <LuBell size={24} className="text-white" />
+            </div>
+          </div>
+        )}
+        {/* </div> */}
 
         <div
           onClick={handleOrbClick}
-          className="w-full h-[320px] min-[650px]:h-[440px] relative z-0 mt-10 cursor-pointer"
+          className="w-fit scale-125  max-[450px]:scale-110 mx-auto h-[300px] min-[650px]:h-[440px] relative  z-0 mt-10 cursor-pointer"
         >
           <Orb
             hoverIntensity={0.5}
@@ -159,7 +148,7 @@ const page = () => {
             forceHoverState={false}
           />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-sora text-4xl max-[650]:text-3xl text-white flex items-center justify-center">
-            {isSpeaking ? (
+            {isSpeaking || orbSpeak ? (
               <StyledWrapper>
                 <div className="loading">
                   <span />
@@ -176,6 +165,8 @@ const page = () => {
             )}
           </div>
         </div>
+
+        <div className="h-screen w-full"></div>
       </main>
     </section>
   );

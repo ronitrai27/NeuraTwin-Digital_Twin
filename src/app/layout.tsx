@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Sora, Inter, Orbitron, Outfit } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
-import { AppProvider } from "@/context/AppContext";
+// import { AppProvider } from "@/context/AppContext";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -48,7 +48,8 @@ export default function RootLayout({
           ${outfit.variable} 
           antialiased`}
       >
-        <AppProvider>{children}</AppProvider>
+        {/* <AppProvider>{children}</AppProvider> */}
+        {children}
 
         <Toaster
           position="bottom-right"

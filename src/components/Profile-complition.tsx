@@ -91,12 +91,12 @@ const goalSuggestionsByOccupation: Record<string, GoalSuggestion[]> = {
         "I want to join Harvard University and excel in my chosen field of study by maintaining a high GPA and participating in research opportunities.",
     },
     {
-      title: "Master a Programming Language",
+      title: "Master Programming Language",
       description:
         "I aim to become proficient in Python and develop three significant projects to showcase my skills to potential employers.",
     },
     {
-      title: "Secure a Prestigious Internship",
+      title: "Secure Prestigious Internship",
       description:
         "I want to secure an internship at a leading tech company to gain practical experience and build professional connections in the industry.",
     },
@@ -353,7 +353,9 @@ export default function ProfileCompletion() {
 
         return (
           profileData.goalTitle.trim().length >= 3 &&
+          profileData.goalTitle.trim().length <= 50 &&
           profileData.goalDescription.trim().length >= 10 &&
+          profileData.goalDescription.trim().length <= 200 &&
           profileData.goalStartDate !== "" &&
           profileData.goalEndDate !== "" &&
           start !== end
@@ -853,6 +855,9 @@ export default function ProfileCompletion() {
                       }
                       className="bg-gray-900/60 border border-indigo-500/30 text-indigo-100 placeholder:text-indigo-500/50 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all duration-300 h-12 rounded-xl backdrop-blur-sm font-mono"
                     />
+                    <p className="text-indigo-500 font-inter text-right text-sm ">
+                      {profileData.goalTitle.length}/50
+                    </p>
                     {profileData.goalTitle.length > 0 &&
                       profileData.goalTitle.length < 3 && (
                         <p className="text-red-400 text-xs font-mono">
@@ -887,8 +892,8 @@ export default function ProfileCompletion() {
                           ? "Protocol valid"
                           : "Minimum 10 chars"}
                       </span>
-                      <span className="text-indigo-500">
-                        {profileData.goalDescription.length}/500
+                      <span className="text-indigo-500 font-inter text-sm">
+                        {profileData.goalDescription.length}/200
                       </span>
                     </div>
                   </div>
