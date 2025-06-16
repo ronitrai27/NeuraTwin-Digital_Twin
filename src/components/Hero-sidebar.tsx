@@ -84,7 +84,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
           </li>
           <li>
             <Link
-              href="/home/analysis"
+              href="/home/insights"
+              onClick={toggleSidebar}
               className="flex items-center gap-2 hover:text-[#7B68DA] transition-colors font-sora text-base"
             >
               <LuSignal size={24} />

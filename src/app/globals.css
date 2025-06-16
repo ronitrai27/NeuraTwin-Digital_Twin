@@ -12,6 +12,7 @@
 }
 
 @layer utilities{
+
   @keyframes marquee2 {
     0% {
       transform: translateX(0%);

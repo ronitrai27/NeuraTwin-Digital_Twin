@@ -15,6 +15,7 @@ import dayjs from "dayjs";
 import { Journal } from "@/types/JournalSchema";
 import { motion } from "framer-motion";
 import { debounce } from "@/lib/debaounce";
+import { BiGhost } from "react-icons/bi";
 
 const JournalPage = () => {
   const {
@@ -29,11 +30,12 @@ const JournalPage = () => {
   const [dateDisplay, setDateDisplay] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const isFetching = useRef(false); // To prevent multiple fetches for journal
+  const [hasSubmittedToday, setHasSubmittedToday] = useState(false); // to ensure 1 journal a day.
 
   // Fetch page 1 journals on mount--------------------------
-  useEffect(() => {
-    fetchJournals(1);
-  }, []);
+  // useEffect(() => {
+  //   fetchJournals(1);
+  // }, []);
 
   // Debounced fetchNext function
   const fetchNext = debounce(async () => {
@@ -47,6 +49,21 @@ const JournalPage = () => {
 
     isFetching.current = false;
   }, 2000); // 300ms debounce
+
+  // DIABLING THE BUTTON TO ENSURE 1 JOURNAL A DAY------------------------
+  useEffect(() => {
+    const today = new Date();
+    const hasTodayEntry = journals.some((journal) => {
+      const createdAt = new Date(journal.createdAt);
+      return (
+        createdAt.getFullYear() === today.getFullYear() &&
+        createdAt.getMonth() === today.getMonth() &&
+        createdAt.getDate() === today.getDate()
+      );
+    });
+
+    setHasSubmittedToday(hasTodayEntry);
+  }, [journals]);
 
   // ---------------------------FORM------------
   const {
@@ -126,8 +143,6 @@ const JournalPage = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  // if (loading) return <div>Loading...</div>;
-
   return (
     <section>
       <main className="px-6 max-[370px]:px-3 py-4 min-[600px]:p-6 mt-3 max-w-[1000px] mx-auto  h-full">
@@ -171,13 +186,16 @@ const JournalPage = () => {
               <p className="text-red-500 text-sm mt-1">{errors.text.message}</p>
             )}
           </div>
-
           <button
             type="submit"
-            disabled={isSubmitting}
+            disabled={isSubmitting || hasSubmittedToday}
             className="bg-gradient-to-r from-indigo-400 to-indigo-600 text-white px-5 py-2 rounded-md hover:bg-indigo-700 disabled:opacity-50 font-sora text-center mx-auto flex justify-center"
           >
-            {isSubmitting ? "Submitting..." : "Complete"}
+            {hasSubmittedToday
+              ? "Completed Today"
+              : isSubmitting
+                ? "Submitting..."
+                : "Complete"}
           </button>
         </form>
 
@@ -196,8 +214,8 @@ const JournalPage = () => {
             </div>
           }
           endMessage={
-            <p className="text-center text-sm text-gray-400 mt-4 font-inter">
-              No more entries.
+            <p className="text-base text-gray-400 mt-4 font-inter flex items-center gap-3 justify-center">
+              <BiGhost size={22} className="text-gray-400" /> No more journals.
             </p>
           }
         >

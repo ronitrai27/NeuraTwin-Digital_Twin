@@ -4,17 +4,19 @@ import { useEffect, useState } from "react";
 import { useAppContext } from "@/context/AppContext";
 import api from "@/lib/api";
 import toast from "react-hot-toast";
-// import HeroNav from "@/components/Hero-nav";
 import Orb from "../../components/ui/Orb";
 import { useSpeech } from "@/lib/useSpeech";
 import styled from "styled-components";
 import Cookies from "js-cookie";
-// import Sidebar from "@/components/Hero-sidebar";
-import { LuMail, LuMailOpen, LuBell } from "react-icons/lu";
+import { getSuggestions } from "@/lib/getSuggestion";
+
+import { LuBell } from "react-icons/lu";
+import { SuggestionsBar } from "@/components/SuggestionBar";
 
 const page = () => {
-  const { currentUser, loading, orbSpeak } = useAppContext();
+  const { currentUser, loading, orbSpeak, journals } = useAppContext();
   const { speak, isSpeaking } = useSpeech();
+  const suggestions = currentUser ? getSuggestions(currentUser, journals) : [];
   // ------------------------SPEAKING --------------------------
 
   useEffect(() => {
@@ -166,7 +168,15 @@ const page = () => {
           </div>
         </div>
 
-        <div className="h-screen w-full"></div>
+        {/* AI SUGGESSTIONS SECTION */}
+        <div className="my-10">
+          <p className="text-gray-400 font-sora text-xl text-left mb-3">
+            AI Suggestions:
+          </p>
+          <SuggestionsBar suggestions={suggestions} />
+        </div>
+
+        {/* <div className="h-screen w-full"></div> */}
       </main>
     </section>
   );

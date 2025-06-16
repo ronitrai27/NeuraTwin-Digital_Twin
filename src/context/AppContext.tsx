@@ -105,6 +105,11 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  // Fetch page 1 journals on mount--------------------------
+  useEffect(() => {
+    fetchJournals(1);
+  }, []);
+
   return (
     <AppContext.Provider
       value={{

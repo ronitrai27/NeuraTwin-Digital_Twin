@@ -22,7 +22,7 @@ interface HeroNavProps {
 
 const HeroNav: React.FC<HeroNavProps> = ({ toggleSidebar, isSidebarOpen }) => {
   const router = useRouter();
-  const { currentUser, setCurrentUser } = useAppContext();
+  const { currentUser, setCurrentUser, loading } = useAppContext();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -42,11 +42,12 @@ const HeroNav: React.FC<HeroNavProps> = ({ toggleSidebar, isSidebarOpen }) => {
   // LOGOUT FUNCTION-----------------------------
   const handleLogout = async () => {
     try {
+      router.push("/login");
       const res = await api.post("/api/user/logout");
 
       if (res.data.success) {
         toast.success("Logged out successfully");
-        router.push("/login");
+        // router.push("/login");
         setCurrentUser(null);
       } else {
         toast.error(res.data.message || "Logout failed");
@@ -84,28 +85,30 @@ const HeroNav: React.FC<HeroNavProps> = ({ toggleSidebar, isSidebarOpen }) => {
 
       {/* PROFILE */}
       <div className="relative flex items-center gap-2 ">
-        <Image
-          onClick={() => setIsOpen((prev) => !prev)}
-          src={
-            currentUser?.gender?.toLowerCase() === "male"
-              ? "/boy1.jpg"
-              : "/girl1.jpg"
-          }
-          alt="Avatar"
-          width={0}
-          height={0}
-          sizes="(min-width: 1000px) 100px, (min-width: 500px) 70px, 45px"
-          className="rounded-full w-[45px] sm:w-[50px] xl:w-[60px] h-auto cursor-pointer"
-        />
-        {/* <p className="max-[500px]:hidden font-sora text-white text-[18px] capitalize">
-          {currentUser?.name || "User"}
-        </p> */}
+        {loading ? (
+          <div className="w-[45px] h-[45px] sm:w-[50px] sm:h-[50px] xl:w-[60px] xl:h-[60px] rounded-full bg-indigo-500 animate-pulse transition-all duration-200"></div>
+        ) : (
+          <Image
+            onClick={() => setIsOpen((prev) => !prev)}
+            src={
+              currentUser?.gender?.toLowerCase() === "male"
+                ? "/boy1.jpg"
+                : "/girl1.jpg"
+            }
+            alt="Avatar"
+            width={0}
+            height={0}
+            sizes="(min-width: 1000px) 100px, (min-width: 500px) 70px, 45px"
+            className="rounded-full w-[45px] sm:w-[50px] xl:w-[60px] h-auto cursor-pointer"
+          />
+        )}
+
         {currentUser?.name ? (
           <p className="max-[500px]:hidden font-sora text-white text-[18px] capitalize">
             {currentUser?.name}
           </p>
         ) : (
-          <div className="w-16 h-5 rounded-full bg-gray-400 animate-pulse transition-all duration-300"></div>
+          <div className="max-[500px]:hidden w-16 h-5 rounded-full bg-gray-400 animate-pulse transition-all duration-300"></div>
         )}
 
         {/* DROPDOWN */}
