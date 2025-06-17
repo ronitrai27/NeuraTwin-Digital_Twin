@@ -18,14 +18,38 @@ const page = () => {
   const { speak, isSpeaking } = useSpeech();
   const suggestions = currentUser ? getSuggestions(currentUser, journals) : [];
   // ------------------------SPEAKING --------------------------
-
   useEffect(() => {
     const timer = setTimeout(() => {
-      const shouldGreet = Cookies.get("firstLogin");
+      if (!currentUser || isSpeaking) return;
 
+      const userId = currentUser._id;
+      const shouldGreet = Cookies.get("firstLogin");
+      const testPromptKey = `personalityPrompted_${userId}`;
+      const hasPromptedTestToday = Cookies.get(testPromptKey);
+
+      // ----------- PERSONALITY SAFETY CHECKS -------------
+      const personality = currentUser?.personality;
+      const lastTestDate = personality?.updatedAt;
+
+      const hasPersonality =
+        typeof personality?.O === "number" &&
+        typeof personality?.C === "number" &&
+        typeof personality?.E === "number" &&
+        typeof personality?.A === "number" &&
+        typeof personality?.N === "number";
+
+      const daysSinceTest = lastTestDate
+        ? (Date.now() - new Date(lastTestDate).getTime()) /
+          (1000 * 60 * 60 * 24)
+        : Infinity;
+
+      const needsTest = !hasPersonality || daysSinceTest >= 7;
+      const isNewUser = !hasPersonality;
+
+      // ---------------- MAIN GREETING -------------------
       if (currentUser?.name && shouldGreet) {
         speak(
-          `Welcome ${currentUser.name}. I am your own AI-powered twin. I will help you become better. I will guide you through your journey. Are you Ready!`,
+          `Welcome ${currentUser.name}. I am your own AI-powered twin. I will help you become better. I will guide you through your journey. Are you ready?`,
           {
             rate: 1,
             pitch: 1.1,
@@ -35,13 +59,54 @@ const page = () => {
         );
 
         Cookies.remove("firstLogin");
-      } else {
-        console.log(" Greeting not triggered. Conditions not met.");
+
+        if (needsTest && !hasPromptedTestToday) {
+          setTimeout(() => {
+            if (!isSpeaking) {
+              const testPrompt = isNewUser
+                ? "It seems you haven't taken the personality test yet. Let's discover who you really are! Take the personality test now. It will help me understand you better."
+                : "It's been a while since your last personality test. Want to check how you've grown?";
+
+              const extraDelay = isNewUser ? 3000 : 0;
+
+              setTimeout(() => {
+                speak(testPrompt, {
+                  rate: 1,
+                  pitch: 1.05,
+                  lang: "en-US",
+                  voiceName: "Microsoft Hazel - English (United Kingdom)",
+                });
+
+                Cookies.set(testPromptKey, "true", { expires: 1 }); // valid for 1 day
+              }, extraDelay);
+            }
+          }, 6000);
+        }
+      }
+
+      // ---------------- FALLBACK (No greeting) ----------------
+      else if (needsTest && !hasPromptedTestToday) {
+        const testPrompt = isNewUser
+          ? `Hi! ${currentUser.name}. You haven't taken the personality test yet. You must complete it now. It will help me to grow and lean more about you.`
+          : "Hey! It's been a week since your last personality test. Let's see how you've evolved.";
+
+        const extraDelay = isNewUser ? 1500 : 0;
+
+        setTimeout(() => {
+          speak(testPrompt, {
+            rate: 1,
+            pitch: 1.05,
+            lang: "en-US",
+            voiceName: "Microsoft Hazel - English (United Kingdom)",
+          });
+
+          Cookies.set(testPromptKey, "true", { expires: 1 });
+        }, extraDelay);
       }
     }, 1000);
 
     return () => clearTimeout(timer);
-  }, [currentUser]);
+  }, [currentUser, isSpeaking]);
 
   // ---------------------------------------RANDOME GREETING -------------------------------------
   const orbResponses = [
